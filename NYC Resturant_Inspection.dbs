@@ -4,7 +4,6 @@
 		<comment_tag name="PhysicalName" value="nyc resturant inspection" />
 		<table name="Dim_Date" prior="Entity" >
 			<column name="Date_ID" type="INT" jt="4" mandatory="y" />
-			<column name="Date_Original_Format" type="DATE" jt="91" />
 			<column name="Year" type="DATE" jt="91" />
 			<column name="Quarter" type="DATE" jt="91" />
 			<column name="Month" type="DATE" jt="91" />
@@ -50,7 +49,6 @@
 			<column name="Violation_ID" type="INT" jt="4" mandatory="y" />
 			<column name="Violation_Code" type="TEXT" jt="-1" mandatory="y" />
 			<column name="Violation_Description" type="VARCHAR" length="255" jt="12" />
-			<column name="Action" type="VARCHAR" length="255" jt="12" />
 			<index name="pk_Dim_Violation" unique="PRIMARY_KEY" >
 				<column name="Violation_ID" />
 			</index>
@@ -83,9 +81,6 @@
 			</column>
 			<column name="Inspection_ID" prior="inspection id" type="INT" jt="4" mandatory="y" >
 				<comment_tag name="PhysicalName" value="inspection_id" />
-			</column>
-			<column name="Rating_ID" prior="rating id" type="INT" jt="4" mandatory="y" >
-				<comment_tag name="PhysicalName" value="rating_id" />
 			</column>
 			<column name="Date_ID" prior="date id" type="INT" jt="4" mandatory="y" >
 				<comment_tag name="PhysicalName" value="date_id" />
