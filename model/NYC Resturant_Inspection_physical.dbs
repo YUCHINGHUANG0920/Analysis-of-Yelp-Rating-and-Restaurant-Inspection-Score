@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="NYC Resturant Inspection" id="PostgreSQL-929" database="PostgreSQL" >
+	<schema name="nyc_resturant_inspection" >
+		<comment_tag name="PhysicalName" value="nyc resturant inspection" />
+		<table name="dim_date" prior="Dim_Date" >
+			<column name="date_id" prior="Date_ID" type="INT" jt="4" mandatory="y" />
+			<column name="year" prior="Year" type="INT" jt="4" />
+			<column name="quarter" prior="Quarter" type="INT" jt="4" />
+			<column name="month" prior="Month" type="INT" jt="4" />
+			<column name="day" prior="Day" type="INT" jt="4" />
+			<column name="month_name" prior="Month_Name" type="VARCHAR" length="100" jt="12" />
+			<column name="day_name" prior="Day_Name" type="VARCHAR" length="100" jt="12" />
+			<column name="week_of_the_year" prior="Week_of_the_Year" type="INT" jt="4" />
+			<column name="week_of_the_month" prior="Week_of_the_Month" type="INT" jt="4" />
+			<column name="date_iso_format" prior="Date_ISO_Format" type="DATE" jt="91" />
+			<index name="pk_dim_date" unique="PRIMARY_KEY" >
+				<column name="date_id" />
+			</index>
+		</table>
+		<table name="dim_inspection_type" prior="Dim_Inspection_Type" >
+			<column name="inspection_id" prior="Inspection_ID" type="INT" jt="4" mandatory="y" />
+			<column name="inspection_type" prior="Inspection_Type" type="VARCHAR" length="255" jt="12" />
+			<index name="pk_dim_inspection" unique="PRIMARY_KEY" >
+				<column name="inspection_id" />
+			</index>
+		</table>
+		<table name="dim_location" prior="Dim_Location" >
+			<column name="location_id" prior="Location_ID" type="INT" jt="4" mandatory="y" />
+			<column name="building" prior="Building" type="VARCHAR" length="255" jt="12" />
+			<column name="street" prior="Street" type="VARCHAR" length="255" jt="12" />
+			<column name="zipcode" prior="Zipcode" type="INT" jt="4" />
+			<column name="borough" prior="Borough" type="VARCHAR" length="20" jt="12" />
+			<column name="latitude" prior="Latitude" type="DECIMAL" length="20" decimal="20" jt="3" />
+			<column name="longitude" prior="Longitude" type="DECIMAL" length="20" decimal="20" jt="3" />
+			<index name="pk_dim_location" unique="PRIMARY_KEY" >
+				<column name="location_id" />
+			</index>
+		</table>
+		<table name="dim_resturant" prior="Dim_Resturant" >
+			<column name="resturant_id" prior="Resturant_ID" type="INT" jt="4" mandatory="y" />
+			<column name="resturant_name" prior="Resturant_Name" type="VARCHAR" length="255" jt="12" />
+			<column name="phone" prior="Phone" type="INT" jt="4" />
+			<column name="cuisine_description" prior="Cuisine_Description" type="VARCHAR" length="255" jt="12" />
+			<index name="pk_dim_resturant" unique="PRIMARY_KEY" >
+				<column name="resturant_id" />
+			</index>
+		</table>
+		<table name="dim_violation" prior="Dim_Violation" >
+			<column name="violation_id" prior="Violation_ID" type="INT" jt="4" mandatory="y" />
+			<column name="violation_code" prior="Violation_Code" type="TEXT" jt="-1" mandatory="y" />
+			<column name="violation_description" prior="Violation_Description" type="VARCHAR" length="255" jt="12" />
+			<index name="pk_dim_violation" unique="PRIMARY_KEY" >
+				<column name="violation_id" />
+			</index>
+		</table>
+		<table name="resturant_facts" prior="Resturant_Facts" >
+			<comment_tag name="PhysicalName" value="resturant_facts" />
+			<column name="fact_id" prior="Fact_ID" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="fact_id" />
+			</column>
+			<column name="inspection_score" prior="Inspection_Score" type="INT" jt="4" >
+				<comment_tag name="PhysicalName" value="inspection_score" />
+			</column>
+			<column name="yelp_star" prior="Yelp_Star" type="INT" jt="4" >
+				<comment_tag name="PhysicalName" value="yelp_star" />
+			</column>
+			<column name="yelp_review_count" prior="Yelp_Review_Count" type="INT" jt="4" >
+				<comment_tag name="PhysicalName" value="yelp_review_count" />
+			</column>
+			<column name="critical_flag" prior="Critical_Flag" type="INT" jt="4" >
+				<comment_tag name="PhysicalName" value="critical_flag" />
+			</column>
+			<column name="grade" prior="Grade" type="INT" jt="4" >
+				<comment_tag name="PhysicalName" value="grade" />
+			</column>
+			<column name="locstion_id" prior="Location_ID" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="locstion_id" />
+			</column>
+			<column name="resturant_id" prior="Resturant_ID" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="resturant_id" />
+			</column>
+			<column name="inspection_id" prior="Inspection_ID" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="inspection_id" />
+			</column>
+			<column name="date_id" prior="Inspection_Date_ID" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="date_id" />
+			</column>
+			<column name="violation_id" prior="Violation_ID" type="INT" jt="4" mandatory="y" />
+			<column name="date_id" prior="Grade_Date_ID" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="date_id" />
+			</column>
+			<index name="pk_resturant_facts" unique="PRIMARY_KEY" >
+				<column name="fact_id" />
+			</index>
+			<fk name="fk_resturant_facts_dim_location" virtual="y" to_schema="nyc_resturant_inspection" to_table="dim_location" >
+				<fk_column name="locstion_id" pk="location_id" />
+			</fk>
+			<fk name="fk_resturant_facts_dim_resturant" virtual="y" to_schema="nyc_resturant_inspection" to_table="dim_resturant" >
+				<fk_column name="resturant_id" pk="resturant_id" />
+			</fk>
+			<fk name="fk_resturant_facts_dim_inspection" virtual="y" to_schema="nyc_resturant_inspection" to_table="dim_inspection_type" >
+				<fk_column name="inspection_id" pk="inspection_id" />
+			</fk>
+			<fk name="fk_resturant_facts_dim_date" virtual="y" to_schema="nyc_resturant_inspection" to_table="dim_date" >
+				<fk_column name="date_id" pk="date_id" />
+			</fk>
+			<fk name="fk_resturant_facts_dim_violation" virtual="y" to_schema="nyc_resturant_inspection" to_table="dim_violation" >
+				<fk_column name="violation_id" pk="violation_id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-6d9" confirmed="y" show_relation="columns" >
+		<entity schema="nyc_resturant_inspection" name="dim_date" color="C1D8EE" x="510" y="85" />
+		<entity schema="nyc_resturant_inspection" name="dim_inspection_type" color="C1D8EE" x="51" y="391" />
+		<entity schema="nyc_resturant_inspection" name="dim_location" color="C1D8EE" x="68" y="119" />
+		<entity schema="nyc_resturant_inspection" name="dim_resturant" color="C1D8EE" x="357" y="459" />
+		<entity schema="nyc_resturant_inspection" name="dim_violation" color="C1D8EE" x="544" y="357" />
+		<entity schema="nyc_resturant_inspection" name="resturant_facts" color="C1D8EE" x="289" y="51" />
+		<script name="SQL_Editor" id="Editor-3b9" language="SQL" >
+			<string><![CDATA[CREATE SCHEMA IF NOT EXISTS nyc_resturant_inspection;
+
+CREATE  TABLE nyc_resturant_inspection.dim_date ( 
+	date_id              INT  NOT NULL  ,
+	"year"               INT    ,
+	quarter              INT    ,
+	"month"              INT    ,
+	"day"                INT    ,
+	month_name           VARCHAR(100)    ,
+	day_name             VARCHAR(100)    ,
+	week_of_the_year     INT    ,
+	week_of_the_month    INT    ,
+	date_iso_format      DATE    ,
+	CONSTRAINT pk_dim_date PRIMARY KEY ( date_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_inspection_type ( 
+	inspection_id        INT  NOT NULL  ,
+	inspection_type      VARCHAR(255)    ,
+	CONSTRAINT pk_dim_inspection PRIMARY KEY ( inspection_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_location ( 
+	location_id          INT  NOT NULL  ,
+	building             VARCHAR(255)    ,
+	street               VARCHAR(255)    ,
+	zipcode              INT    ,
+	borough              VARCHAR(20)    ,
+	latitude             DECIMAL(20,20)    ,
+	longitude            DECIMAL(20,20)    ,
+	CONSTRAINT pk_dim_location PRIMARY KEY ( location_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_resturant ( 
+	resturant_id         INT  NOT NULL  ,
+	resturant_name       VARCHAR(255)    ,
+	phone                INT    ,
+	cuisine_description  VARCHAR(255)    ,
+	CONSTRAINT pk_dim_resturant PRIMARY KEY ( resturant_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_violation ( 
+	violation_id         INT  NOT NULL  ,
+	violation_code       TEXT  NOT NULL  ,
+	violation_description VARCHAR(255)    ,
+	CONSTRAINT pk_dim_violation PRIMARY KEY ( violation_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.resturant_facts ( 
+	fact_id              INT  NOT NULL  ,
+	inspection_score     INT    ,
+	yelp_star            INT    ,
+	yelp_review_count    INT    ,
+	critical_flag        INT    ,
+	grade                INT    ,
+	locstion_id          INT  NOT NULL  ,
+	resturant_id         INT  NOT NULL  ,
+	inspection_id        INT  NOT NULL  ,
+	date_id              INT  NOT NULL  ,
+	violation_id         INT  NOT NULL  ,
+	date_id              INT  NOT NULL  ,
+	CONSTRAINT pk_resturant_facts PRIMARY KEY ( fact_id )
+ ) engine=InnoDB;
+]]></string>
+		</script>
+	</layout>
+</project>
