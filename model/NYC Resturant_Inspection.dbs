@@ -107,14 +107,14 @@
 			<fk name="fk_Resturant_Facts_Dim_Violation" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Violation" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="Violation_ID" pk="Violation_ID" />
 			</fk>
-			<fk name="fk_Resturant_Facts_Dim_Date_0" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+			<fk name="fk_Resturant_Facts_Dim_Date_0" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Date" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="Grade_Date_ID" pk="Date_ID" />
 			</fk>
 			<options><![CDATA[engine=InnoDB]]></options>
 		</table>
 	</schema>
 	<layout name="Default Layout" id="Layout-92f" confirmed="y" show_relation="columns" >
-		<entity schema="nyc resturant inspection" name="Dim_Date" color="C1D8EE" x="510" y="85" />
+		<entity schema="nyc resturant inspection" name="Dim_Date" color="C1D8EE" x="612" y="85" />
 		<entity schema="nyc resturant inspection" name="Dim_Inspection_Type" color="C1D8EE" x="51" y="391" />
 		<entity schema="nyc resturant inspection" name="Dim_Location" color="C1D8EE" x="68" y="119" />
 		<entity schema="nyc resturant inspection" name="Dim_Resturant" color="C1D8EE" x="357" y="459" />
