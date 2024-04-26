@@ -53,11 +53,11 @@ CREATE  TABLE nyc_resturant_inspection.resturant_facts (
 	yelp_review_count    INT    ,
 	critical_flag        INT    ,
 	grade                INT    ,
-	locstion_id          INT  NOT NULL  ,
+	location_id          INT  NOT NULL  ,
 	resturant_id         INT  NOT NULL  ,
 	inspection_id        INT  NOT NULL  ,
-	date_id              INT  NOT NULL  ,
+	inspection_date_id   INT  NOT NULL  ,
 	violation_id         INT  NOT NULL  ,
-	date_id              INT  NOT NULL  ,
+	violation_date_id    INT  NOT NULL  ,
 	CONSTRAINT pk_resturant_facts PRIMARY KEY ( fact_id )
- ) engine=InnoDB;
+ );
