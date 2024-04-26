@@ -107,6 +107,9 @@
 			<fk name="fk_Resturant_Facts_Dim_Violation" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Violation" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="Violation_ID" pk="Violation_ID" />
 			</fk>
+			<fk name="fk_Resturant_Facts_Dim_Date_0" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Date" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="Grade_Date_ID" pk="Date_ID" />
+			</fk>
 			<options><![CDATA[engine=InnoDB]]></options>
 		</table>
 	</schema>
