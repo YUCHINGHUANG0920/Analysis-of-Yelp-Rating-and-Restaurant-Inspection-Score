@@ -4,10 +4,10 @@
 		<comment_tag name="PhysicalName" value="nyc resturant inspection" />
 		<table name="Dim_Date" prior="Entity" >
 			<column name="Date_ID" type="INT" jt="4" mandatory="y" />
-			<column name="Year" type="DATE" jt="91" />
-			<column name="Quarter" type="DATE" jt="91" />
-			<column name="Month" type="DATE" jt="91" />
-			<column name="Day" prior="Dat" type="DATE" jt="91" />
+			<column name="Year" type="INT" jt="4" />
+			<column name="Quarter" type="INT" jt="4" />
+			<column name="Month" type="INT" jt="4" />
+			<column name="Day" prior="Dat" type="INT" jt="4" />
 			<column name="Month_Name" type="VARCHAR" length="100" jt="12" />
 			<column name="Day_Name" prior="Da_Name" type="VARCHAR" length="100" jt="12" />
 			<column name="Week_of_the_Year" type="INT" jt="4" />
@@ -82,10 +82,13 @@
 			<column name="Inspection_ID" prior="inspection id" type="INT" jt="4" mandatory="y" >
 				<comment_tag name="PhysicalName" value="inspection_id" />
 			</column>
-			<column name="Date_ID" prior="date id" type="INT" jt="4" mandatory="y" >
+			<column name="Inspection_Date_ID" prior="Date_ID" type="INT" jt="4" mandatory="y" >
 				<comment_tag name="PhysicalName" value="date_id" />
 			</column>
 			<column name="Violation_ID" type="INT" jt="4" mandatory="y" />
+			<column name="Grade_Date_ID" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="date_id" />
+			</column>
 			<index name="pk resturant facts" unique="PRIMARY_KEY" >
 				<column name="Fact_ID" />
 			</index>
@@ -99,7 +102,7 @@
 				<fk_column name="Inspection_ID" pk="Inspection_ID" />
 			</fk>
 			<fk name="fk_Resturant_Facts_Dim_Date" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Date" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
-				<fk_column name="Date_ID" pk="Date_ID" />
+				<fk_column name="Inspection_Date_ID" pk="Date_ID" />
 			</fk>
 			<fk name="fk_Resturant_Facts_Dim_Violation" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Violation" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="Violation_ID" pk="Violation_ID" />
