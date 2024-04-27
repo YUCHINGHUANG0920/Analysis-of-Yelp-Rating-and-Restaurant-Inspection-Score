@@ -54,7 +54,7 @@
 			</index>
 		</table>
 		<table name="Restaurant_Facts" prior="Resturant_Facts" >
-			<comment_tag name="PhysicalName" value="resturant_facts" />
+			<comment_tag name="PhysicalName" value="restaurant_facts" />
 			<column name="Fact_ID" prior="fact id" type="BIGINT" jt="-5" mandatory="y" >
 				<comment_tag name="PhysicalName" value="fact_id" />
 			</column>
@@ -77,7 +77,7 @@
 				<comment_tag name="PhysicalName" value="locstion_id" />
 			</column>
 			<column name="Restaurant_ID" prior="Resturant_ID" type="BIGINT" jt="-5" >
-				<comment_tag name="PhysicalName" value="resturant_id" />
+				<comment_tag name="PhysicalName" value="restaurant_id" />
 			</column>
 			<column name="Inspection_ID" prior="inspection id" type="BIGINT" jt="-5" >
 				<comment_tag name="PhysicalName" value="inspection_id" />
