@@ -8,47 +8,47 @@
 			<column name="quarter" prior="Quarter" type="INT" jt="4" />
 			<column name="month" prior="Month" type="INT" jt="4" />
 			<column name="day" prior="Day" type="INT" jt="4" />
-			<column name="month_name" prior="Month_Name" type="VARCHAR" length="100" jt="12" />
-			<column name="day_name" prior="Day_Name" type="VARCHAR" length="100" jt="12" />
+			<column name="month_name" prior="Month_Name" type="varchar" length="100" jt="12" />
+			<column name="day_name" prior="Day_Name" type="varchar" length="100" jt="12" />
 			<column name="week_of_the_year" prior="Week_of_the_Year" type="INT" jt="4" />
 			<column name="week_of_the_month" prior="Week_of_the_Month" type="INT" jt="4" />
-			<column name="date_iso_format" prior="Date_ISO_Format" type="DATE" jt="91" />
+			<column name="date_iso_format" prior="Date_ISO_Format" type="date" jt="91" />
 			<index name="pk_dim_date" unique="PRIMARY_KEY" >
 				<column name="date_id" />
 			</index>
 		</table>
 		<table name="dim_inspection_type" prior="Dim_Inspection_Type" >
 			<column name="inspection_id" prior="Inspection_ID" type="INT" jt="4" mandatory="y" />
-			<column name="inspection_type" prior="Inspection_Type" type="VARCHAR" length="255" jt="12" />
+			<column name="inspection_type" prior="Inspection_Type" type="varchar" length="255" jt="12" />
 			<index name="pk_dim_inspection" unique="PRIMARY_KEY" >
 				<column name="inspection_id" />
 			</index>
 		</table>
 		<table name="dim_location" prior="Dim_Location" >
 			<column name="location_id" prior="Location_ID" type="INT" jt="4" mandatory="y" />
-			<column name="building" prior="Building" type="VARCHAR" length="255" jt="12" />
-			<column name="street" prior="Street" type="VARCHAR" length="255" jt="12" />
+			<column name="building" prior="Building" type="varchar" length="255" jt="12" />
+			<column name="street" prior="Street" type="varchar" length="255" jt="12" />
 			<column name="zipcode" prior="Zipcode" type="INT" jt="4" />
-			<column name="borough" prior="Borough" type="VARCHAR" length="20" jt="12" />
-			<column name="latitude" prior="Latitude" type="DECIMAL" length="20" decimal="20" jt="3" />
-			<column name="longitude" prior="Longitude" type="DECIMAL" length="20" decimal="20" jt="3" />
+			<column name="borough" prior="Borough" type="varchar" length="20" jt="12" />
+			<column name="latitude" prior="Latitude" type="numeric" length="20" decimal="20" jt="2" />
+			<column name="longitude" prior="Longitude" type="numeric" length="20" decimal="20" jt="2" />
 			<index name="pk_dim_location" unique="PRIMARY_KEY" >
 				<column name="location_id" />
 			</index>
 		</table>
 		<table name="dim_resturant" prior="Dim_Resturant" >
 			<column name="resturant_id" prior="Resturant_ID" type="INT" jt="4" mandatory="y" />
-			<column name="resturant_name" prior="Resturant_Name" type="VARCHAR" length="255" jt="12" />
+			<column name="resturant_name" prior="Resturant_Name" type="varchar" length="255" jt="12" />
 			<column name="phone" prior="Phone" type="INT" jt="4" />
-			<column name="cuisine_description" prior="Cuisine_Description" type="VARCHAR" length="255" jt="12" />
+			<column name="cuisine_description" prior="Cuisine_Description" type="varchar" length="255" jt="12" />
 			<index name="pk_dim_resturant" unique="PRIMARY_KEY" >
 				<column name="resturant_id" />
 			</index>
 		</table>
 		<table name="dim_violation" prior="Dim_Violation" >
 			<column name="violation_id" prior="Violation_ID" type="INT" jt="4" mandatory="y" />
-			<column name="violation_code" prior="Violation_Code" type="TEXT" jt="-1" mandatory="y" />
-			<column name="violation_description" prior="Violation_Description" type="VARCHAR" length="255" jt="12" />
+			<column name="violation_code" prior="Violation_Code" type="text" jt="12" mandatory="y" />
+			<column name="violation_description" prior="Violation_Description" type="varchar" length="255" jt="12" />
 			<index name="pk_dim_violation" unique="PRIMARY_KEY" >
 				<column name="violation_id" />
 			</index>
@@ -86,8 +86,8 @@
 				<comment_tag name="PhysicalName" value="inspection_date_id" />
 			</column>
 			<column name="violation_id" prior="Violation_ID" type="INT" jt="4" mandatory="y" />
-			<column name="violation_date_id" prior="date_id" type="INT" jt="4" mandatory="y" >
-				<comment_tag name="PhysicalName" value="violation_date_id" />
+			<column name="grade_date_id" prior="violation_date_id" type="INT" jt="4" mandatory="y" >
+				<comment_tag name="PhysicalName" value="grade_date_id" />
 			</column>
 			<index name="pk_resturant_facts" unique="PRIMARY_KEY" >
 				<column name="fact_id" />
@@ -108,7 +108,7 @@
 				<fk_column name="violation_id" pk="violation_id" />
 			</fk>
 			<fk name="fk_resturant_facts_dim_date_0" virtual="y" to_schema="nyc_resturant_inspection" to_table="dim_date" >
-				<fk_column name="violation_date_id" pk="date_id" />
+				<fk_column name="grade_date_id" pk="date_id" />
 			</fk>
 			<options><![CDATA[engine=InnoDB]]></options>
 		</table>
@@ -182,6 +182,71 @@ CREATE  TABLE nyc_resturant_inspection.resturant_facts (
 	inspection_date_id   INT  NOT NULL  ,
 	violation_id         INT  NOT NULL  ,
 	violation_date_id    INT  NOT NULL  ,
+	CONSTRAINT pk_resturant_facts PRIMARY KEY ( fact_id )
+ ) engine=InnoDB;]]></string>
+		</script>
+		<script name="SQL_Editor_001" id="Editor-1298" language="SQL" >
+			<string><![CDATA[CREATE SCHEMA IF NOT EXISTS nyc_resturant_inspection;
+
+CREATE  TABLE nyc_resturant_inspection.dim_date ( 
+	date_id              INT  NOT NULL  ,
+	"year"               INT    ,
+	quarter              INT    ,
+	"month"              INT    ,
+	"day"                INT    ,
+	month_name           varchar(100)    ,
+	day_name             varchar(100)    ,
+	week_of_the_year     INT    ,
+	week_of_the_month    INT    ,
+	date_iso_format      date    ,
+	CONSTRAINT pk_dim_date PRIMARY KEY ( date_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_inspection_type ( 
+	inspection_id        INT  NOT NULL  ,
+	inspection_type      varchar(255)    ,
+	CONSTRAINT pk_dim_inspection PRIMARY KEY ( inspection_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_location ( 
+	location_id          INT  NOT NULL  ,
+	building             varchar(255)    ,
+	street               varchar(255)    ,
+	zipcode              INT    ,
+	borough              varchar(20)    ,
+	latitude             numeric(20,20)    ,
+	longitude            numeric(20,20)    ,
+	CONSTRAINT pk_dim_location PRIMARY KEY ( location_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_resturant ( 
+	resturant_id         INT  NOT NULL  ,
+	resturant_name       varchar(255)    ,
+	phone                INT    ,
+	cuisine_description  varchar(255)    ,
+	CONSTRAINT pk_dim_resturant PRIMARY KEY ( resturant_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.dim_violation ( 
+	violation_id         INT  NOT NULL  ,
+	violation_code       text  NOT NULL  ,
+	violation_description varchar(255)    ,
+	CONSTRAINT pk_dim_violation PRIMARY KEY ( violation_id )
+ );
+
+CREATE  TABLE nyc_resturant_inspection.resturant_facts ( 
+	fact_id              INT  NOT NULL  ,
+	inspection_score     INT    ,
+	yelp_star            INT    ,
+	yelp_review_count    INT    ,
+	critical_flag        INT    ,
+	grade                INT    ,
+	location_id          INT  NOT NULL  ,
+	resturant_id         INT  NOT NULL  ,
+	inspection_id        INT  NOT NULL  ,
+	inspection_date_id   INT  NOT NULL  ,
+	violation_id         INT  NOT NULL  ,
+	grade_date_id        INT  NOT NULL  ,
 	CONSTRAINT pk_resturant_facts PRIMARY KEY ( fact_id )
  ) engine=InnoDB;
 ]]></string>
