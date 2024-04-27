@@ -36,13 +36,13 @@
 				<column name="Location_ID" />
 			</index>
 		</table>
-		<table name="Dim_Resturant" prior="Entity" >
-			<column name="Resturant_ID" type="INT" jt="4" mandatory="y" />
-			<column name="Resturant_Name" type="VARCHAR" length="255" jt="12" />
+		<table name="Dim_Restaurant" prior="Dim_Resturant" >
+			<column name="Restaurant_ID" prior="Resturant_ID" type="INT" jt="4" mandatory="y" />
+			<column name="Restaurant_Name" prior="Resturant_Name" type="VARCHAR" length="255" jt="12" />
 			<column name="Phone" type="INT" jt="4" />
 			<column name="Cuisine_Description" type="VARCHAR" length="255" jt="12" />
 			<index name="pk_Dim_Resturant" unique="PRIMARY_KEY" >
-				<column name="Resturant_ID" />
+				<column name="Restaurant_ID" />
 			</index>
 		</table>
 		<table name="Dim_Violation" prior="Entity" >
@@ -53,7 +53,7 @@
 				<column name="Violation_ID" />
 			</index>
 		</table>
-		<table name="Resturant_Facts" prior="resturant facts" >
+		<table name="Restaurant_Facts" prior="Resturant_Facts" >
 			<comment_tag name="PhysicalName" value="resturant_facts" />
 			<column name="Fact_ID" prior="fact id" type="INT" jt="4" mandatory="y" >
 				<comment_tag name="PhysicalName" value="fact_id" />
@@ -76,7 +76,7 @@
 			<column name="Location_ID" prior="Locstion_ID" type="INT" jt="4" mandatory="y" >
 				<comment_tag name="PhysicalName" value="locstion_id" />
 			</column>
-			<column name="Resturant_ID" prior="resturant id" type="INT" jt="4" mandatory="y" >
+			<column name="Restaurant_ID" prior="Resturant_ID" type="INT" jt="4" mandatory="y" >
 				<comment_tag name="PhysicalName" value="resturant_id" />
 			</column>
 			<column name="Inspection_ID" prior="inspection id" type="INT" jt="4" mandatory="y" >
@@ -95,8 +95,8 @@
 			<fk name="fk_Resturant_Facts_Dim_Location" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Location" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="Location_ID" pk="Location_ID" />
 			</fk>
-			<fk name="fk_Resturant_Facts_Dim_Resturant" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Resturant" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
-				<fk_column name="Resturant_ID" pk="Resturant_ID" />
+			<fk name="fk_Resturant_Facts_Dim_Resturant" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Restaurant" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="Restaurant_ID" pk="Restaurant_ID" />
 			</fk>
 			<fk name="fk_Resturant_Facts_Dim_Inspection" virtual="y" to_schema="nyc resturant inspection" to_table="Dim_Inspection_Type" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="Inspection_ID" pk="Inspection_ID" />
@@ -117,8 +117,8 @@
 		<entity schema="nyc resturant inspection" name="Dim_Date" color="C1D8EE" x="612" y="85" />
 		<entity schema="nyc resturant inspection" name="Dim_Inspection_Type" color="C1D8EE" x="51" y="391" />
 		<entity schema="nyc resturant inspection" name="Dim_Location" color="C1D8EE" x="68" y="119" />
-		<entity schema="nyc resturant inspection" name="Dim_Resturant" color="C1D8EE" x="357" y="459" />
+		<entity schema="nyc resturant inspection" name="Dim_Restaurant" color="C1D8EE" x="357" y="459" />
 		<entity schema="nyc resturant inspection" name="Dim_Violation" color="C1D8EE" x="544" y="357" />
-		<entity schema="nyc resturant inspection" name="Resturant_Facts" color="C1D8EE" x="289" y="51" />
+		<entity schema="nyc resturant inspection" name="Restaurant_Facts" color="C1D8EE" x="289" y="51" />
 	</layout>
 </project>
