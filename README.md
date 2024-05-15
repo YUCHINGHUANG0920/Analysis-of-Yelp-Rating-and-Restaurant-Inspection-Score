@@ -1,6 +1,6 @@
 # NYC Restaurant Inspection
 
-This peoject is about building and visualizing Data Warehouse for NYC restaurants' inspections, violations and Yelp star and comments. To see our PowerPoints for this project, please go [here](/Data%20Warehousing%20Term%20Project.pdf).
+This project is about building and visualizing Data Warehouse for NYC restaurants' inspections, violations and Yelp star and comments. To see our PowerPoints for this project, please go [here](/Data%20Warehousing%20Term%20Project.pdf).
 
 1. Business Peoblem
 
