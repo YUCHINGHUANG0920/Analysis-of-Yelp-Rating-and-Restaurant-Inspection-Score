@@ -69,13 +69,20 @@ Within this dashboard, we can explore the correlation between two metrics, track
 
 The main sections included in the dashboard are as follows:
 
-1. **Correlation - Average of Yelp Star vs Average of Inspection Score:** This section displays the correlation between Yelp Star and inspection score, showing the relationship between the two. The X-axis represents Yelp ratings, and the Y-axis represents Inspection ratings.
-2. **Avg Inspection Score and Qty (By Year):** This chart illustrates the quantity of inspections (bar chart) and inspection scores (line chart) from May 2016 to April 2024.
-3. **Avg Yelp Star and Avg Inspection Score (By Year):** This chart presents the Yelp ratings (bar chart) and inspection scores (line chart) from May 2016 to April 2024.
-4. **Location:** This section displays a map based on Longitude and Latitude. The color represents the average Yelp Star, where darker colors indicate higher Yelp ratings. The size represents the average Inspection Score, with larger circles indicating higher Inspection Scores, implying poorer conditions of the restaurant. This map provides insights into the Inspection and Yelp rating trends across different geographical locations.
-5. **Avg Inspection Score VS Yelp Star (By Cuisine):** This section presents the average Yelp ratings (bar chart) and inspection scores (line chart) for different cuisines, sorted by Yelp ratings from high to low.
-6. **Avg Inspection Score (By Inspection By Year) and Avg Inspection Score (By Violation By Year):** These sections respectively showcase the quantity and scores of different inspection types, as well as the quantity and scores of different violations.
-7. **Violation:** This section displays the main violation trends.
+1. **Correlation - Average of Yelp Star vs Average of Inspection Score:**</br>
+   This section displays the correlation between Yelp Star and inspection score, showing the relationship between the two. The X-axis represents Yelp ratings, and the Y-axis represents Inspection ratings.
+2. **Avg Inspection Score and Qty (By Year):**</br>
+   This chart illustrates the quantity of inspections (bar chart) and inspection scores (line chart) from May 2016 to April 2024.
+3. **Avg Yelp Star and Avg Inspection Score (By Year):**</br>
+   This chart presents the Yelp ratings (bar chart) and inspection scores (line chart) from May 2016 to April 2024.
+4. **Location:**</br>
+   This section displays a map based on Longitude and Latitude. The color represents the average Yelp Star, where darker colors indicate higher Yelp ratings. The size represents the average Inspection Score, with larger circles indicating higher Inspection Scores, implying poorer conditions of the restaurant. This map provides insights into the Inspection and Yelp rating trends across different geographical locations.
+5. **Avg Inspection Score VS Yelp Star (By Cuisine):**</br>
+   This section presents the average Yelp ratings (bar chart) and inspection scores (line chart) for different cuisines, sorted by Yelp ratings from high to low.
+6. **Avg Inspection Score (By Inspection By Year) and Avg Inspection Score (By Violation By Year):**</br>
+   These sections respectively showcase the quantity and scores of different inspection types, as well as the quantity and scores of different violations.
+7. **Violation:**</br>
+    This section displays the main violation trends.
 
 ## 7. Conclusion
 
