@@ -60,7 +60,7 @@ In this project, we select the Bronx as the primary administrative district for 
 - We use ***Azure blob storage*** for the staing storage after extracting data from data sources.
 - And use ***PostgrSQL*** for data warehouse.
 
-### Data processing/infesting
+### Data Processing/Infesting
 
 The data is extracted via both url and API. Unnecessary coulumns are dropped when do data cleaning. Data is reformated to suitable format. For data transformation, we built dimension and fact table, and generate sequantial id as primary keys when necessary. Data mappping is done to link the tables. After that, data is consolidated and loaded into data warehouse for analysing. </br>
 
