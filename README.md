@@ -55,18 +55,18 @@ In this project, we select the Bronx as the primary administrative district for 
 
 ![Information Archetecture](/pictures/Information%20Architecture.png)
 
-#### Data Storage
+### Data Storage
 
 - We use ***Azure blob storage*** for the staing storage after extracting data from data sources.
 - And use ***PostgrSQL*** for data warehouse.
 
-#### Data processing/infesting
+### Data processing/infesting
 
 The data is extracted via both url and API. Unnecessary coulumns are dropped when do data cleaning. Data is reformated to suitable format. For data transformation, we built dimension and fact table, and generate sequantial id as primary keys when necessary. Data mappping is done to link the tables. After that, data is consolidated and loaded into data warehouse for analysing. </br>
 
 For data processing, we use ***Python*** and choose ***VScode***, ***Google Colab***, ***Jupyter Notebook***, and ***Data Grip*** as code editer and computing platform.
 
-#### Data Orchestration
+### Data Orchestration
 
 - We use ***Python*** to build scripts,
 - and use ***DBschema*** to generate the **Star Schema** and sql script for building data warehouse.
