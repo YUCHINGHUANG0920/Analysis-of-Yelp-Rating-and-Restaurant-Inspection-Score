@@ -49,11 +49,25 @@ The first dataset comprises 226,000 records documenting restaurants across the f
 Our goal is to combine this dataset with Yelp rating information to analyze the relationship between inspection scores and Yelp ratings. By integrating and refining these datasets, we aim to select relevant fields for further analysis.</br>
 In this project, we select the Bronx as the primary administrative district for analysis. We conduct data integration and select relevant fields for analysis, resulting in a final dataset size of 11,660 records with 12 fields. This dataset encompasses restaurant information in the Bronx, including names, locations, violation descriptions, inspection scores, grading dates, Yelp star ratings, Yelp review counts, and more.
 
-## 5. Methods
+## 5. Methods & Data Tools
 
 ### Information Archetecture
 
 ![Information Archetecture](/pictures/Information%20Architecture.png)
+
+#### Data Storage
+
+- We use ***Azure blob storage*** for the stageing storage after extracting data from data sources.
+- And use ***PostgrSQL*** for data warehouse.
+
+#### Data processing/infesting
+
+### Data Orchestration
+
+- We use Python to build scripts,
+- and use ***DBschema*** to generate the **Star Schema** and sql script for building data warehouse.
+
+![Star Schema](/model/DBschema_pic.png)
 
 ## 6. Interface
 
@@ -69,19 +83,19 @@ Within this dashboard, we can explore the correlation between two metrics, track
 
 The main sections included in the dashboard are as follows:
 
-1. **Correlation - Average of Yelp Star vs Average of Inspection Score:**</br>
+1. **Correlation - Average of Yelp Star vs Average of Inspection Score:**
    This section displays the correlation between Yelp Star and inspection score, showing the relationship between the two. The X-axis represents Yelp ratings, and the Y-axis represents Inspection ratings.
-2. **Avg Inspection Score and Qty (By Year):**</br>
+2. **Avg Inspection Score and Qty (By Year):**
    This chart illustrates the quantity of inspections (bar chart) and inspection scores (line chart) from May 2016 to April 2024.
-3. **Avg Yelp Star and Avg Inspection Score (By Year):**</br>
+3. **Avg Yelp Star and Avg Inspection Score (By Year):**
    This chart presents the Yelp ratings (bar chart) and inspection scores (line chart) from May 2016 to April 2024.
-4. **Location:**</br>
+4. **Location:**
    This section displays a map based on Longitude and Latitude. The color represents the average Yelp Star, where darker colors indicate higher Yelp ratings. The size represents the average Inspection Score, with larger circles indicating higher Inspection Scores, implying poorer conditions of the restaurant. This map provides insights into the Inspection and Yelp rating trends across different geographical locations.
-5. **Avg Inspection Score VS Yelp Star (By Cuisine):**</br>
+5. **Avg Inspection Score VS Yelp Star (By Cuisine):**
    This section presents the average Yelp ratings (bar chart) and inspection scores (line chart) for different cuisines, sorted by Yelp ratings from high to low.
-6. **Avg Inspection Score (By Inspection By Year) and Avg Inspection Score (By Violation By Year):**</br>
+6. **Avg Inspection Score (By Inspection By Year) and Avg Inspection Score (By Violation By Year):**
    These sections respectively showcase the quantity and scores of different inspection types, as well as the quantity and scores of different violations.
-7. **Violation:**</br>
+7. **Violation:**
     This section displays the main violation trends.
 
 ## 7. Conclusion
