@@ -1,0 +1,7 @@
+**/.DS_Store
+**/Pipfile
+**/Pipfile.lock
+**/.ipynb_checkpoints/*
+
+scripts/others
+config
