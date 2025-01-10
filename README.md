@@ -1,80 +1,39 @@
-# NYC Restaurant Inspection
+# Analysis-of-Yelp-Rating-and-Restaurant-Inspection-Score
 
-This project is about building and visualizing Data Warehouse for NYC restaurants' inspections, violations and Yelp star and comments. To see our PowerPoints for this project, please go [here](/Data%20Warehousing%20Term%20Project.pdf).
+## Overview
+This project focuses on the correlation between restaurant inspection scores from NYC Open Data and Yelp ratings to investigate if public awareness about food safety can be improved. By analyzing data from multiple sources, the goal is to expose patterns and correlations between Yelp ratings and restaurant violations. Our platform will offer easy access to these insights, helping both the general public and government organizations to make informed decisions regarding food safety.
 
-## 1. Business Problem
+## Objectives
+- Explore the relationship between Yelp ratings and NYC restaurant inspection scores: The key objective is to assess how inspection scores correlate with Yelp ratings and whether the general public considers inspection scores when evaluating restaurants.
+- Raise awareness of food safety: Investigate how Yelp ratings and inspection scores may impact public understanding of food safety practices, and how government agencies can improve transparency.
+- Provide a comprehensive user-friendly platform: Build a dashboard where the public can easily view and compare Yelp ratings, restaurant inspection results, and violations, enabling more informed decisions regarding dining choices.
 
-As a **non-profit governmental organization**, we are deeply concerned about public health and understand the importance of food safety. Therefore, our team has conducted research to explore the correlation between restaurant inspection scores and Yelp ratings. Furthermore, our research explores if the general public considers a restaurant's inspection ratings when deciding where to eat.
-
-The purpose of this study is to **investigate whether government involvement is required to increase knowledge of food and environmental safety in restaurants for the public**. We aim to expose any correlations between variables through detailed data analysis and visualization, and ultimately suggest any improvements.
-
-## 2. Business Impact
-
+## Business Impact
 Our system is designed for both **the general public, restaurants and government organizations**, and it provides a user-friendly platform for accessing Yelp ratings as well as restaurant inspection scores. The project's expected benefits include offering an easier search platform for the public, raising the awareness of food safety, and motivating restaurants to improve their inspection scores.
 
-## 3. Business Persona
-
-The public will have access to the system to check any restaurants’ inspection score, and our team are the actors of the system. 
-
-## 4. Data (Dictionary)
-
+## Data (Dictionary)
 Our project aims to address business requirements related to restaurant inspections and Yelp ratings in New York City (NYC) by integrating data from two primary data sources: the New York City Restaurant Inspection Results from NYC Open Data and Yelp Data.
 
-### **Strengths**
-
-First Data Source (NYC Open Data - New York City Restaurant Inspection Results):
-
-- There is a large number of records available for analysis.
-- Each restaurant entry includes latitude and longitude information.
-- Detailed violation descriptions are provided.
-
-Second Data Source (Yelp Data):
-
-- Each restaurant entry includes latitude and longitude information, which facilitates comparison with the first data source.
-
-### **Weaknesses**
-
-First Data Source (NYC Open Data - New York City Restaurant Inspection Results):
-
-- Inconsistencies exist between restaurant names in this dataset and those on Yelp.
-- There is inconsistent mapping of violation codes to violation descriptions.
-- There is variability in cuisine descriptions for the same restaurant entries.
-
-Second Data Source (Yelp Data):
-
-- There is a limitation of 300 records per day per token account, which restricts the analysis scope to a subset of NYC restaurants.
-
-The first dataset comprises 226,000 records documenting restaurants across the five administrative districts of NYC. It includes details such as restaurant names, locations, violation descriptions, inspection scores, and more, encompassing a total of 27 fields.
-
-Our goal is to combine this dataset with Yelp rating information to analyze the relationship between inspection scores and Yelp ratings. By integrating and refining these datasets, we aim to select relevant fields for further analysis.</br>
-In this project, we select the Bronx as the primary administrative district for analysis. We conduct data integration and select relevant fields for analysis, resulting in a final dataset size of 11,660 records with 12 fields. This dataset encompasses restaurant information in the Bronx, including names, locations, violation descriptions, inspection scores, grading dates, Yelp star ratings, Yelp review counts, and more.
-
-## 5. Methods & Data Tools
-
+## Methods & Data Tools
 ### Information Archetecture
-
 ![Information Archetecture](/pictures/Information%20Architecture.png)
 
 ### Data Storage
-
 - We use ***Azure blob storage*** for the staing storage after extracting data from data sources.
 - And use ***PostgrSQL*** for data warehouse.
 
 ### Data Processing/Infesting
-
 The data is extracted via both url and API. Unnecessary coulumns are dropped when do data cleaning. Data is reformated to suitable format. For data transformation, we built dimension and fact table, and generate sequantial id as primary keys when necessary. Data mappping is done to link the tables. After that, data is consolidated and loaded into data warehouse for analysing. </br>
 
 For data processing, we use ***Python*** and choose ***VScode***, ***Google Colab***, ***Jupyter Notebook***, and ***Data Grip*** as code editer and computing platform.
 
 ### Data Orchestration
-
 - We use ***Python*** to build scripts,
 - and use ***DBschema*** to generate the **Star Schema** and sql script for building data warehouse.
 
 ![Star Schema](/model/DBschema_pic.png)
 
-## 6. Interface
-
+## Data Visualization
 The final interface will be a web-based application where the Persona can visualize the results.  People should be able to connect to your  data using Tableau/PowerBI and do their own analysis.
 
 [Online Tableau Dashboard](https://public.tableau.com/app/profile/shanlinna/viz/NYCRestaurant_17143574410070/Dashboard)
@@ -102,8 +61,7 @@ The main sections included in the dashboard are as follows:
 7. **Violation:**
     This section displays the main violation trends.
 
-## 7. Conclusion
-
+## Conclusion
 According to the analysis of our data, the chart below shows the relationship between Yelp stars and inspection scores. As we can see, there doesn't appear to be a clear trend. It means that there may have some restaurants may have awesome ratings on Yelp but also actually have lots of violation records in the NYC open dataset.
 
 ![relationship](/pictures/Relationship%20Between%20Yelp%20Stars%20and%20Inspection%20Score.png)
@@ -117,3 +75,12 @@ The other charts below show the average inspection score group by year, the gree
 According to the analysis above, we understand that Yelp ratings can not reflect a restaurant's safety standards. What is the reason why we want to build the platform for everyone. Public can visit our dashboard and look through the restaurants which are interested in, using the heatmap to check whether the violation code it violated before are serious or not.
 
 Through this project and what we do, we hope to raise awareness: when looking for restaurants, don't just focus on the online ratings. Instead, pay attention to the violations that they did before, hope we can make an effort to improve the NYC restaurant dining environment and food quality.
+
+## Future Work
+To enhance the accuracy and effectiveness of this platform, we could:
+1. Integrate Real-Time Data: Continuously update Yelp ratings and inspection scores to reflect the most current information, ensuring the platform provides up-to-date insights for users.
+2. Improve Data Quality: Address inconsistencies between restaurant names and violation codes to enhance data matching and the reliability of results.
+3. Broader Data Coverage: Expand the dataset to include more restaurants from different areas of NYC and additional metrics such as health department comments or other public reviews to improve analysis.
+4. Enhanced Visualization: Introduce more interactive features like filtering by specific violation types, restaurant grades, and more detailed historical data for better user insights.
+5. User Feedback Mechanism: Implement a feedback system where users can report discrepancies or share their experiences, contributing to a more comprehensive and accurate database.
+
